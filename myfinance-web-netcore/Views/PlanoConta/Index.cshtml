@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Plano Conta";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<button type="button" class="btn btn-info" onclick="irParaCadastro()">Cadastrar</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var item in (List<PlanoContaModel>)ViewBag.ListaPlanoConta)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Descricao</td>
+                    <td>@item.Tipo</td>
+                    <td><button type="button" onclick="irParaEdicao(@item.Id)" class="btn btn-warning">Editar</button></td>
+                    <td>
+                        @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script>
+    function irParaCadastro(){
+        window.location.href = "../PlanoConta/Cadastro";
+    }
+
+    function irParaEdicao(id){
+        window.location.href = "../PlanoConta/Cadastro/"+id;
+    }
+</script>
